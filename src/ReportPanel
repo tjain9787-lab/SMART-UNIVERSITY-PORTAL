@@ -1,0 +1,90 @@
+package smartuniversityportal;
+
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
+
+public class ReportPanel extends JPanel {
+
+    private JLabel chartLabel;
+    
+    // Teeno reports ke relative paths
+    private final String attendancePath = "python/charts/attendance_report.png";
+    private final String feePath        = "python/charts/fees_report.png";
+    private final String resultPath     = "python/charts/results_report.png";
+
+    public ReportPanel() {
+        setLayout(new BorderLayout());
+        setBackground(Color.WHITE); 
+        setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+
+        // 1. TOP PANEL: Heading aur Buttons ke liye
+        JPanel topPanel = new JPanel();
+        topPanel.setOpaque(false);
+        topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
+
+        // Heading
+        JLabel titleLabel = new JLabel("University Analysis & Reports", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Georgia", Font.BOLD, 22));
+        titleLabel.setForeground(new Color(15, 32, 68)); 
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        topPanel.add(titleLabel);
+        topPanel.add(Box.createVerticalStrut(15)); // Thoda gap
+
+        // Navigation Buttons Row
+        JPanel btnRow = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 0));
+        btnRow.setOpaque(false);
+
+        JButton btnAttendance = createReportBtn("📊 Attendance Report", new Color(26, 86, 219));
+        JButton btnFee        = createReportBtn("💰 Fee Report", new Color(22, 163, 74));
+        JButton btnResult     = createReportBtn("📈 Result Report", new Color(161, 98, 7));
+
+        btnRow.add(btnAttendance);
+        btnRow.add(btnFee);
+        btnRow.add(btnResult);
+        
+        topPanel.add(btnRow);
+        add(topPanel, BorderLayout.NORTH);
+
+        // 2. CENTER PANEL: Chart Display Area
+        chartLabel = new JLabel("", SwingConstants.CENTER);
+        add(chartLabel, BorderLayout.CENTER);
+
+        // Button Actions (Click karne par image change hogi)
+        btnAttendance.addActionListener(e -> displayChart(attendancePath));
+        btnFee.addActionListener(e -> displayChart(feePath));
+        btnResult.addActionListener(e -> displayChart(resultPath));
+
+        // Default: Khulte hi pehle Attendance Report dikhegi
+        displayChart(attendancePath);
+    }
+
+    // Method: Image ko load aur scale karke dikhane ke liye
+    private void displayChart(String path) {
+        File file = new File(path);
+        if (file.exists()) {
+            ImageIcon rawIcon = new ImageIcon(path); 
+            Image rawImg = rawIcon.getImage();
+            // Dashboard size ke mutabik scale kiya
+            Image scaledImg = rawImg.getScaledInstance(820, 500, Image.SCALE_SMOOTH);
+            chartLabel.setIcon(new ImageIcon(scaledImg));
+            chartLabel.setText(""); // Error text clear karne ke liye
+        } else {
+            chartLabel.setIcon(null);
+            chartLabel.setText("<html><center><font color='red' size='5'>Chart image nahi mili!<br>"
+                    + "<font color='gray' size='4'>Path check karein: " + path + "</font></center></html>");
+        }
+    }
+
+    // Helper Method: Sundar rounded buttons banane ke liye
+    private JButton createReportBtn(String text, Color bg) {
+        JButton btn = new JButton(text);
+        btn.setFont(new Font("SansSerif", Font.BOLD, 13));
+        btn.setForeground(Color.WHITE);
+        btn.setBackground(bg);
+        btn.setFocusPainted(false);
+        btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btn.setPreferredSize(new Dimension(180, 38));
+        return btn;
+    }
+}
