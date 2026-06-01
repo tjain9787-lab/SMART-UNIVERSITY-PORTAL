@@ -431,6 +431,9 @@ public class AdminDashboard extends JFrame {
             case "Fees":
                 mainContent.add(new FeePanel(), BorderLayout.CENTER);
                 break;
+            case "Reports":
+                mainContent.add(new ReportPanel(),BorderLayout.CENTER);
+                break;
             default:
                 JLabel soon = new JLabel(module + " — Coming Soon!",
                     SwingConstants.CENTER);
