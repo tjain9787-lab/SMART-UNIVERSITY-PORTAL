@@ -87,6 +87,17 @@ The project provides role-based access control for Administrators, Faculty Membe
 | Faculty | sharma | sharma123 |
 | Student | tanisha | pass123 |
 
+## 🧪 Testing
+- Unit Tests: `src/smartuniversityportal/TestCases.java` (23 test cases)
+- Behavioural Tests: `src/smartuniversityportal/BehaviouralTest.java` (8 scenarios)
+
+## 🤖 AI Module
+- Rule-based recommendation engine: `AIRecommendation.java`
+- Features: Attendance analysis, risk assessment, grade prediction
+
+## 🐳 Docker
+docker-compose up --build
+
 
 ## Database Tables
 * users
