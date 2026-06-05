@@ -78,16 +78,20 @@ The entire application ecosystem—including the Java environment, Python runtim
 7. For Analytics Manual Run: Open python/university_reports.ipynb in Jupyter Notebook and execute all cells.
 
 --
-
 ## 🔑 Test Credentials
-Role Username Password 
-Admin admin admin123 
-Faculty sharma sharma123
-Student tanisha pass123
 
---
+| Role | Username | Password |
+| :--- | :--- | :--- |
+| **Admin** | `admin` | `admin123` |
+| **Faculty** | `sharma` | `sharma123` |
+| **Student** | `tanisha` | `pass123` |
 
-## 📁 Project StructurePlaintextSmartUniversityPortal/
+---
+
+## 📁 Project Structure
+
+```text
+SmartUniversityPortal/
 ├── src/               # Java Source Code (Swing GUI, Testing & Business Logic)
 ├── database/          # MySQL Database Scripts & .sql dumps
 ├── frontend/          # HTML/CSS/JS Files for Web View
@@ -96,6 +100,8 @@ Student tanisha pass123
 ├── Dockerfile         # Docker configuration file for the Java runtime
 ├── docker-compose.yml # Service orchestration for Java, MySQL & Python
 └── README.md          # Project Documentation
+
+--
 
 ## 🧑‍💻 Developer
 Name: Tanisha Jain
