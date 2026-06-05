@@ -67,3 +67,37 @@ The entire application ecosystem—including the Java environment, Python runtim
 3. Execute the following command:
    ```bash
    docker-compose up --build
+
+##⚙️ Manual Installation & Setup (Alternative)
+1. Install XAMPP and start the Apache & MySQL services.
+2. Import the database file located at database/university_portal.sql via phpMyAdmin.
+3. Open the project folder in NetBeans IDE.
+4. Add mysql-connector-j-9.7.0.jar to the project's Libraries tab.
+5. Clean and Build the project, then run Login.java to start the application.
+6. For Web View: Open frontend/index.html using the Live Server extension in your browser.
+7. For Analytics Manual Run: Open python/university_reports.ipynb in Jupyter Notebook and execute all cells.
+   
+##🔑 Test Credentials
+Role Username Password 
+Admin admin admin123 
+Faculty sharma sharma123
+Student tanisha pass123
+
+📁 Project StructurePlaintextSmartUniversityPortal/
+├── src/               # Java Source Code (Swing GUI, Testing & Business Logic)
+├── database/          # MySQL Database Scripts & .sql dumps
+├── frontend/          # HTML/CSS/JS Files for Web View
+├── python/            # Jupyter Notebooks & generated charts (.png)
+├── DOCS/              # ER Diagrams, DFDs, and Project Screenshots
+├── Dockerfile         # Docker configuration file for the Java runtime
+├── docker-compose.yml # Service orchestration for Java, MySQL & Python
+└── README.md          # Project Documentation
+
+##🧑‍💻 Developer
+Name: Tanisha Jain
+Registration ID: 2314513802
+Course: Bachelor of Computer Applications (BCA)
+University: Manipal University Jaipur (MUJ)
+Academic Year: 3rd Year Final Project
+
+##📄 LicenseThis is an academic project developed solely for evaluation purposes.
