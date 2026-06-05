@@ -1,0 +1,94 @@
+# ============================================================
+# docker-compose.yml — Smart University Portal
+# Author: Tanisha Jain | Reg: 2314513802
+# ============================================================
+# HOW TO RUN:
+#   Step 1: Install Docker Desktop from https://docker.com
+#   Step 2: Open terminal in project root folder
+#   Step 3: Run command: docker-compose up --build
+#   Step 4: MySQL will start first, then the application
+# ============================================================
+
+version: '3.8'
+
+services:
+
+  # ── Service 1: MySQL Database ──────────────────────────────
+  mysql-db:
+    image: mysql:8.0
+    container_name: university_portal_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: university_portal
+      MYSQL_USER: portal_user
+      MYSQL_PASSWORD: portal123
+    ports:
+      - "3307:3306"        # host:container (3307 to avoid conflict with local MySQL)
+    volumes:
+      - db_data:/var/lib/mysql                          # persistent data storage
+      - ./database/university_portal.sql:/docker-entrypoint-initdb.d/init.sql  # auto-import SQL
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot123"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - portal_network
+
+  # ── Service 2: Java Application ────────────────────────────
+  java-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: university_portal_app
+    restart: on-failure
+    environment:
+      DB_HOST: mysql-db
+      DB_PORT: 3306
+      DB_NAME: university_portal
+      DB_USER: root
+      DB_PASSWORD: root123
+    depends_on:
+      mysql-db:
+        condition: service_healthy     # wait for MySQL to be ready
+    ports:
+      - "8080:8080"
+    networks:
+      - portal_network
+    volumes:
+      - ./python:/app/python           # mount Python scripts
+      - ./docs:/app/docs               # mount docs/charts output folder
+
+  # ── Service 3: Python Analytics (optional, run separately) ─
+  python-analytics:
+    image: python:3.11-slim
+    container_name: university_portal_analytics
+    working_dir: /app
+    volumes:
+      - ./python:/app
+      - ./docs:/app/docs
+    environment:
+      DB_HOST: mysql-db
+      DB_PORT: 3306
+      DB_NAME: university_portal
+      DB_USER: root
+      DB_PASSWORD: root123
+    command: >
+      sh -c "pip install matplotlib pandas mysql-connector-python --quiet &&
+             python analytics.py"
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    networks:
+      - portal_network
+
+# ── Persistent Volume ────────────────────────────────────────
+volumes:
+  db_data:
+    driver: local
+
+# ── Network ──────────────────────────────────────────────────
+networks:
+  portal_network:
+    driver: bridge
