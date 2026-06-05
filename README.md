@@ -1,135 +1,69 @@
 # Smart University Portal with Real-Time Tracking System
 
-## Overview
-The Smart University Portal with Real-Time Tracking System is a comprehensive university management application developed as a Bachelor of Computer Application (BCA) final year project.
+## 📌 Overview
+The **Smart University Portal with Real-Time Tracking System** is a comprehensive desktop and analytics application developed as a Bachelor of Computer Applications (BCA) final year project. 
 
-The system is designed to automate and simplify university administrative and academic processes such as student management, faculty management, course management, attendance tracking, result management, fee management, and analytical reporting.
-The project provides role-based access control for Administrators, Faculty Members, and Students.
+The system automates and simplifies university administrative and academic processes, including student management, faculty management, course management, attendance tracking, result management, fee management, and analytical reporting. The project features robust role-based access control for **Administrators, Faculty Members, and Students**.
 
-## Features
-### Authentication & Authorization
-* Secure Login System
-* Role-Based Access Control
-* Separate Dashboards for Admin, Faculty, and Student
+---
 
-### Student Management
-* Add Student
-* Update Student
-* Delete Student
-* Search Student
+## ✨ Features
 
-### Faculty Management
-* Add Faculty
-* Update Faculty
-* Delete Faculty
+### 🔐 Authentication & Authorization
+* Secure Login System with encrypted validation.
+* Role-Based Access Control (RBAC).
+* Separate, interactive dashboards tailored for Admin, Faculty, and Student roles.
 
-### Course Management
-* Create Courses
-* Assign Faculty
-* Manage Credits and Semester Information
+### 👥 Core Management Modules
+* **Student Management:** Full CRUD operations (Add, Update, Delete, Search) for student profiles.
+* **Faculty Management:** Complete profile management for university educators.
+* **Course Management:** Tools to create courses, assign faculty, and manage credits/semester timelines.
 
-### Attendance Tracking
-* Mark Attendance
-* View Attendance Summary
-* Attendance Percentage Calculation
-* Attendance Threshold Monitoring
+### 📈 Attendance & Fee Tracking
+* **Attendance Tracking:** Real-time attendance logging, automated percentage calculation, and strict 75% threshold monitoring.
+* **Fee Management:** Classification of dues into Paid, Pending, and Overdue categories with payment history logging.
 
-### Result Management
-* Enter Marks
-* Automatic Grade Calculation
-* View Student Results
+### 📊 Results & Predictive Analytics
+* **Result Management:** Marks entry with automatic grade calculation and instant report card views.
+* **Reports & Analytics:** Highly visual, Python-generated charts representing overall university statistics.
 
-### Fee Management
-* Track Fee Status
-* Paid / Pending / Overdue Categories
-* Payment History Management
+---
 
-### Reports & Analytics
-* Attendance Reports
-* Academic Performance Analysis
-* Fee Collection Analytics
-* Python-Based Data Visualization
+## 🤖 AI Module (Smart Insights)
+The portal integrates an automated **Rule-Based Recommendation Engine** (`AIRecommendation.java`) that provides real-time proactive insights directly on the dashboard:
+* **Attendance Analysis:** Evaluates student irregularities and triggers alert states.
+* **Risk Assessment:** Flags students falling below academic or attendance benchmarks.
+* **Performance Prediction:** Provides actionable recommendations based on past exam grades and trend analysis.
 
-  
+---
+
 ## 💻 Technology Stack
 
 | Technology | Purpose |
 | :--- | :--- |
-| **Java (JDK 17)** | Core Application Logic |
-| **Java Swing** | Desktop Graphical User Interface (GUI) |
-| **MySQL** | Relational Database Management |
-| **JDBC** | Database Connectivity |
-| **HTML5 & CSS3** | Web Frontend Interface (Supplementary/Student View) |
-| **Python (Pandas, Matplotlib)** | Data Analysis & Analytics Graph Generation |
-| **XAMPP** | Local Database Server (phpMyAdmin) |
+| **Java (JDK 17 or higher)** | Core Application Logic & Object-Oriented Framework |
+| **Java Swing** | Desktop Graphical User Interface (GUI) with Custom Rendering |
+| **MySQL** | Relational Database Management System (RDBMS) |
+| **JDBC** | Database Connectivity & Query Execution |
+| **Python (Pandas, Matplotlib)** | Data Wrangling & Analytical Graph Generation |
+| **HTML5 & CSS3** | Supplementary Web Frontend Interface (Student Portal View) |
+| **XAMPP / Docker** | Local Database Server & Environment Management |
 
+---
 
-## Installation & Setup
+## 🧪 Testing Framework
+To ensure system reliability and robust behavior, the project implements comprehensive testing paradigms:
+* **Unit Testing (`TestCases.java`):** Includes **23 robust test cases** verifying individual backend components, database connectivity, and validation constraints.
+* **Behavioural Testing (`BehaviouralTest.java`):** Features **8 user-scenario simulations** checking the end-to-end workflow of features like role switching, restriction checks, and negative login flows.
 
-1. Install XAMPP and start Apache + MySQL
-2. Import `database/university_portal.sql` in phpMyAdmin
-3. Open project in NetBeans (JDK 17)
-4. Add mysql-connector-j-9.7.0.jar to Libraries
-5. Run `Login.java` to start application
+---
 
-**For Frontend:**
-- Open `frontend/index.html` in browser with Live Server extension
+## 🐳 Docker Containerization
+The entire application ecosystem—including the Java environment, Python runtime, and MySQL database—is completely containerized for instant, zero-configuration deployment.
 
-**For Analytics:**
-- Open `python/university_reports.ipynb` in Jupyter Notebook
-- Run all cells to generate charts
-
-
-## Test Credentials
-| Role | Username | Password |
-|------|----------|----------|
-| Admin | admin | admin123 |
-| Faculty | sharma | sharma123 |
-| Student | tanisha | pass123 |
-
-## 🧪 Testing
-- Unit Tests: `src/smartuniversityportal/TestCases.java` (23 test cases)
-- Behavioural Tests: `src/smartuniversityportal/BehaviouralTest.java` (8 scenarios)
-
-## 🤖 AI Module
-- Rule-based recommendation engine: `AIRecommendation.java`
-- Features: Attendance analysis, risk assessment, grade prediction
-
-## 🐳 Docker
-docker-compose up --build
-
-
-## Database Tables
-* users
-* students
-* faculty
-* courses
-* attendance
-* results
-* fees
-
-
-## 📁 Project Structure
-
-```text
-SmartUniversityPortal/
-├── src/               # Java Source Code (Swing GUI & Logic)
-├── database/          # MySQL Database Scripts (.sql files)
-├── frontend/          # HTML/CSS Files for Web View
-├── python/            # Jupyter Notebooks for Analytics & Charts
-├── DOCS/              # ER Diagram, DFD, and Project Screenshots
-└── README.md          # Project Documentation
-
-
-## Repository
-**GitHub:** https://github.com/tjain9787-lab/SMART-UNIVERSITY-PORTAL
-
-  
-## Developer
-- Name: Tanisha Jain
-- Course: BCA (Online) - Manipal University Jaipur
-- Year: 3rd Year Final Project
-
-
-## License
-This is an academic project. No commercial use without permission.
+### Steps to Run via Docker:
+1. Ensure **Docker Desktop** is running on your machine.
+2. Open your terminal in the project root directory.
+3. Execute the following command:
+   ```bash
+   docker-compose up --build
