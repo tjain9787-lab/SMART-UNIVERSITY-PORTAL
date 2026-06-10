@@ -47,7 +47,7 @@ The portal integrates an automated **Rule-Based Recommendation Engine** (`AIReco
 | **JDBC** | Database Connectivity & Query Execution |
 | **Python (Pandas, Matplotlib)** | Data Wrangling & Analytical Graph Generation |
 | **HTML5 & CSS3** | Supplementary Web Frontend Interface (Student Portal View) |
-| **XAMPP / Docker** | Local Database Server & Environment Management |
+| **Docker / Docker-Compose** | Containerized Platform Architecture & Virtualized DBMS Isolation |
 
 ---
 
