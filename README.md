@@ -75,7 +75,7 @@ The entire application ecosystem—including the Java environment, Python runtim
 4. Add mysql-connector-j-9.7.0.jar to the project's Libraries tab.
 5. Clean and Build the project, then run Login.java to start the application.
 6. For Web View: Open frontend/index.html using the Live Server extension in your browser.
-7. For Analytics Manual Run: Open python/university_reports.ipynb in Jupyter Notebook and execute all cells.
+7. For Analytics Automation Run: The headless Python analytics module executes dynamically via file-system triggers from the backend Java engine container without requiring manual notebook interactions.
 
 --
 ## 🔑 Test Credentials
